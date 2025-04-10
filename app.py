@@ -24,7 +24,6 @@ class Users(db.Model):
     password = db.Column(db.String, nullable=False)
     permission = db.Column(db.Enum(AccessLevel), nullable=False)
 
-
 @app.route('/')
 def home():
     contents = Content.query.all()
@@ -42,6 +41,12 @@ def login():
 
 @app.route('/register', methods=['POST'])
 def register():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    access_level = request.form.get('access_level')
+
+    
+
     return render_template('register.html')
 
 @app.route('/create', methods=['POST'])
@@ -49,11 +54,11 @@ def create():
     return render_template('create.html')
 
 @app.route('/delete')
-def create():
+def delete():
     return render_template('delete.html')
 
 @app.route('/edit')
-def create():
+def edit():
     return render_template('edit.html')
 
 if __name__ == '__main__':
